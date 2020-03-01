@@ -38,6 +38,17 @@ class Merchant::DiscountsController < Merchant::BaseController
     end
   end
 
+  def destroy
+    @discount = Discount.find_by(id: params[:id])
+    if @discount.nil?
+      flash[:error] = 'Discount already deleted.'
+    else
+      flash[:success] = "#{@discount.name} has been deleted."
+      @discount.destroy
+    end
+    redirect_to merchant_discounts_path
+  end
+
     private
 
     def discount_params
