@@ -49,4 +49,15 @@ class Cart
       contents[item.id.to_s] == 0
     end
   end
+
+  def discount_check
+    items.reduce(Hash.new(0)) do |discount, item|
+      best_discount = Discount.where("discounts.merchant_id = #{item[0].merchant_id} AND #{item[1]} >= discounts.item_count")
+                              .order(percent: :desc)
+                              .limit(1)
+
+      discount[item[0]] = best_discount[0] unless best_discount.empty?
+      discount
+    end
+  end
 end
