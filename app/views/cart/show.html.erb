@@ -54,7 +54,8 @@
     <% unless cart.discount_check.empty? %>
       <h2>Discounts</h2>
       <% cart.discount_check.each do |item, discount| %>
-        <h2><%= link_to item.name, item_path(item) %> - <%= link_to discount.name, merchant_discount_path(discount) %> - <%= discount.percent %>%</h3>
+        <h4><%= link_to "#{item.merchant.name}", "/merchants/#{item.merchant.id}/items" %></h4>
+        <h2><%= link_to item.name, item_path(item) %> - <%= discount.name %> - <%= discount.percent %>%</h2>
       <% end %>
     <% end %>
   </div>
