@@ -21,6 +21,12 @@ describe Item, type: :model do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @chain = @bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
 
+      @item1 = create(:random_item, price: 100.00)
+      @item2 = create(:random_item, price: 100.00)
+
+      @discount1 = create(:discount, item_count: 2, percent: 5)
+      @discounts = { @item1 => @discount1 }
+
       @review_1 = @chain.reviews.create(title: "Great place!", content: "They have great bike stuff and I'd recommend them to anyone.", rating: 5)
       @review_2 = @chain.reviews.create(title: "Cool shop!", content: "They have cool bike stuff and I'd recommend them to anyone.", rating: 4)
       @review_3 = @chain.reviews.create(title: "Meh place", content: "They have meh bike stuff and I probably won't come back", rating: 1)
@@ -84,6 +90,11 @@ describe Item, type: :model do
 
       expect(Item.popular(5, "desc")).to eq([super_item, item1, item2, item3, item4])
       expect(Item.popular(5, "asc")).to eq([@chain, item7, item6, item5, item4])
+    end
+
+    it 'price_check' do
+      expect(@item1.price).to eq(100.00)
+      expect(@item1.price_check(@discounts)).to eq(95.00)
     end
   end
 end
