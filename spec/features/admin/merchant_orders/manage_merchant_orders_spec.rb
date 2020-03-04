@@ -10,6 +10,7 @@ RSpec.describe 'As an admin', type: :feature do
     @item2 = create(:random_item, merchant: @merchant)
     @item3 = create(:random_item, merchant: @merchant)
     @item4 = create(:random_item, merchant: @merchant)
+    @item5 = create(:random_item, merchant: @merchant)
     @order1 = create(:random_order)
     @order2 = create(:random_order)
     @order3 = create(:random_order)
@@ -88,6 +89,8 @@ RSpec.describe 'As an admin', type: :feature do
         end
 
         expect(page).to have_content("Cannot delete an item with orders.")
+
+        visit "/admin/merchants/#{@merchant.id}/items"
 
         within("#item-#{@item4.id}") do
           click_link 'Delete'
@@ -190,6 +193,22 @@ RSpec.describe 'As an admin', type: :feature do
           expect(page).to have_content(new_item.description)
         end
       end
+    end
+  end
+
+  describe 'If an item has already been deleted when I click Delete' do
+    it 'It will display a flash error message and redirect' do
+      visit "/admin/merchants/#{@merchant.id}/items/#{@item5.id}"
+
+      expect(page).to have_link('Delete')
+
+      Item.destroy(@item5.id)
+
+      expect(page).to have_link('Delete')
+      click_link 'Delete'
+
+      expect(current_path).to eq("/admin/merchants")
+      expect(page).to have_content('Item already deleted.')
     end
   end
 end

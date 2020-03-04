@@ -1,4 +1,5 @@
 <%= render partial: "/partials/merchant_dashboard", locals: {
   path: "/admin/merchants/#{@merchant.id}/orders/",
-  items_path: "/admin/merchants/#{@merchant.id}/items"
+  items_path: "/admin/merchants/#{@merchant.id}/items",
+  discounts_path: merchant_discounts_path
 } %>
