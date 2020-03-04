@@ -12,13 +12,14 @@ class Profile::OrdersController < Profile::BaseController
 
   def create
     order = current_user.orders.create(order_params)
+    discounts = cart.discount_check
     if order.save
       cart.items.each do |item,quantity|
         order.item_orders.create({
           item: item,
           quantity: quantity,
-          price: item.price
-          })
+          price: item.price_check(discounts)
+        })
       end
       session.delete(:cart)
       flash[:success] = "Your order was created."

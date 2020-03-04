@@ -8,7 +8,7 @@
     <h2> <%=link_to item_order.item.name, item_path(item_order.item.id) %> </h2>
     <%= link_to image_tag(item_order.item.image), item_path(item_order.item.id), id: "image-#{item_order.item.id}" %>
     <p> <%= item_order.item.description %> </p>
-    <p>Price: <%=number_to_currency(item_order.item.price) %> </p><br>
+    <p>Price: <%=number_to_currency(item_order.price) %> </p><br>
     <p>Amount: <%= item_order.quantity %></p>
     <p>Subtotal: <%= number_to_currency(item_order.subtotal) %></p>
   </section>

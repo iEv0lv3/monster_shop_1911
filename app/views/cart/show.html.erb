@@ -27,7 +27,7 @@
           </p>
         </td>
         <td>
-          <p><%=number_to_currency(item.price)%></p>
+          <p><%=number_to_currency(item.price_check(cart.discount_check))%></p>
         </td>
         <td>
           <center id='qty'>
@@ -50,17 +50,9 @@
     <% end %>
   </table>
   <p>Total: <%= number_to_currency(cart.total) %></p>
-  <div>
-    <% unless cart.discount_check.empty? %>
-      <h2>Discounts</h2>
-      <% cart.discount_check.each do |item, discount| %>
-        <h4><%= link_to "#{item.merchant.name}", "/merchants/#{item.merchant.id}/items" %></h4>
-        <h2><%= link_to item.name, item_path(item) %> - <%= discount.name %> - <%= discount.percent %>%</h2>
-      <% end %>
-    <% end %>
-  </div>
+  <%= render partial: '/partials/discounts_active' %>
   <p><%= link_to "Empty Cart", "/cart", method: :delete %></p>
-  <p><%= link_to "Checkout", "profile/orders/new", method: :get if current_user%></p>
+  <p><%= link_to "Checkout", "profile/orders/new", method: :get if current_user %></p>
 <% else %>
   <h3 align= "center">Cart is currently empty</h3>
   </center>

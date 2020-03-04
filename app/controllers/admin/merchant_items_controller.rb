@@ -42,8 +42,7 @@ class Admin::MerchantItemsController < Admin::BaseController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    merchant = item.merchant
+    item = Item.find_by(id: params[:id])
     if !item
       flash[:error] = "Item already deleted."
     elsif item.no_orders?
@@ -52,7 +51,7 @@ class Admin::MerchantItemsController < Admin::BaseController
     else
       flash[:error] = "Cannot delete an item with orders."
     end
-    redirect_to "/admin/merchants/#{merchant.id}/items"
+    redirect_to "/admin/merchants"
   end
 
     private

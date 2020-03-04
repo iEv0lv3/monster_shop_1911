@@ -18,7 +18,7 @@ RSpec.describe 'As an admin', type: :feature do
   end
 
   describe 'When I visit the merchants index page and click a merchant name' do
-    xit "I'm redirected to the /admin/merchants/:id dashboard page" do
+    it "I'm redirected to the /admin/merchants/:id dashboard page" do
       visit '/merchants'
 
       within("#merchant-#{@merchant.id}") do

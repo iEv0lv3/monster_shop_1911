@@ -85,5 +85,20 @@ describe Item, type: :model do
       expect(Item.popular(5, "desc")).to eq([super_item, item1, item2, item3, item4])
       expect(Item.popular(5, "asc")).to eq([@chain, item7, item6, item5, item4])
     end
+
+    it 'price_check' do
+      item1 = create(:random_item, price: 100.00)
+      item2 = create(:random_item, price: 100.00)
+
+      discount1 = create(:discount, item_count: 2, percent: 5)
+      discount2 = create(:discount, item_count: 4, percent: 10)
+      discounts = { item1 => discount1, item2 => discount2 }
+
+      expect(item1.price).to eq(100.00)
+      expect(item1.price_check(discounts)).to eq(95.00)
+
+      expect(item2.price).to eq(100.00)
+      expect(item2.price_check(discounts)).to eq(90.00)
+    end
   end
 end

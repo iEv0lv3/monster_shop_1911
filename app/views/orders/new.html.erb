@@ -1,4 +1,4 @@
-<h1 align = "center">Order</h1>
+<h1 align="center">Order</h1>
 <table>
   <tr>
     <th>Item</th>
@@ -9,8 +9,8 @@
     <th>Inventory</th>
   </tr>
   <% cart.items.each do |item, quantity| %>
-    <tr id='order-item-<%= item.id%>'>
-      <td><h2><%= link_to item.name, "/items/#{item.id}" %></h2></td>
+    <tr id='order-item-<%= item.id %>'>
+      <td><p><%= link_to item.name, "/items/#{item.id}" %></p></td>
       <td><p><%= number_to_currency(item.price) %></p></td>
       <td><p><%= quantity %></p></td>
       <td><p><%= number_to_currency(cart.subtotal(item)) %></p></td>
@@ -19,7 +19,8 @@
     </tr>
   <% end %>
 </table>
-<h3 align = "right">Total: <%= number_to_currency(cart.total)%></h3>
+<h3 align = "center">Total: <%= number_to_currency(cart.total)%></h3>
+<%= render partial: '/partials/discounts_active' %>
 <center>
   <h2>Shipping Info:</h2>
   <%= form_tag "/profile/orders", method: :create do %>

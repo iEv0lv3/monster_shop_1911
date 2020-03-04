@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe "on the admin merchant index" do
-  xit "shows a button to enable or disable merchant" do
+  it "shows a button to enable or disable merchant" do
     user = create(:admin_user)
     merchant = create(:random_merchant)
     

@@ -7,6 +7,7 @@ RSpec.describe "As a merchant employee" do
     user = create(:merchant_user, merchant: merchant)
     @item1 = create(:random_item, merchant: merchant)
     @item2 = create(:random_item, merchant: merchant)
+    @item3 = create(:random_item, merchant: merchant)
     @item1.reviews.create(title: "Ok", content: "Alright I guess.", rating: 2)
     create(:random_item_order, item: @item2)
     create(:random_item, merchant: merchant)
