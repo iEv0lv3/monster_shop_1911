@@ -23,12 +23,15 @@ class Cart
   end
 
   def subtotal(item)
-    item.price * @contents[item.id.to_s]
+    discounts = discount_check
+    quantity = @contents[item.id.to_s]
+    item.price_check(discounts) * quantity
   end
 
   def total
-    @contents.sum do |item_id,quantity|
-      Item.find(item_id).price * quantity
+    discounts = discount_check
+    items.sum do |item, quantity|
+      item.price_check(discounts) * quantity
     end
   end
 
