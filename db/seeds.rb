@@ -22,8 +22,33 @@ davids = Merchant.create(name: "David's Donuts", address: '123 Dunking Donuts Dr
 kats = Merchant.create(name: "Kathleen's Knits", address: '123 Pumpkin St', city: 'Denver', state: 'CO', zip: 80972)
 
 #discounts
-jw.discounts.create(name: 'Fiver', item_count: 20, percent: 5 )
-jw.discounts.create(name: 'Tenner', item_count: 40, percent: 10 )
+jw.discounts.create(name: 'JW Fiver', item_count: 3, percent: 5 )
+jw.discounts.create(name: 'JW Tenner', item_count: 5, percent: 10 )
+jw.discounts.create(name: 'JW Fifteener', item_count: 7, percent: 15 )
+
+kats.discounts.create(name: 'Kat Fiver', item_count: 3, percent: 5 )
+kats.discounts.create(name: 'Kat Tenner', item_count: 5, percent: 10 )
+kats.discounts.create(name: 'Kat Fifteener', item_count: 7, percent: 15 )
+
+davids.discounts.create(name: 'DA Fiver', item_count: 3, percent: 5 )
+davids.discounts.create(name: 'DA Tenner', item_count: 5, percent: 10 )
+davids.discounts.create(name: 'DA Fifteener', item_count: 7, percent: 15 )
+
+rays.discounts.create(name: 'Ray Fiver', item_count: 3, percent: 5 )
+rays.discounts.create(name: 'Ray Tenner', item_count: 5, percent: 10 )
+rays.discounts.create(name: 'Ray Fifteener', item_count: 7, percent: 15 )
+
+alpaca.discounts.create(name: 'Alpaca Fiver', item_count: 3, percent: 5 )
+alpaca.discounts.create(name: 'Alpaca Tenner', item_count: 5, percent: 10 )
+alpaca.discounts.create(name: 'Alpaca Fifteener', item_count: 7, percent: 15 )
+
+dog_shop.discounts.create(name: 'Dog Fiver', item_count: 3, percent: 5 )
+dog_shop.discounts.create(name: 'Dog Tenner', item_count: 5, percent: 10 )
+dog_shop.discounts.create(name: 'Dog Fifteener', item_count: 7, percent: 15 )
+
+bike_shop.discounts.create(name: 'Bike Fiver', item_count: 3, percent: 5 )
+bike_shop.discounts.create(name: 'Bike Tenner', item_count: 5, percent: 10 )
+bike_shop.discounts.create(name: 'Bike Fifteener', item_count: 7, percent: 15 )
 
 #all shop items
 tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
