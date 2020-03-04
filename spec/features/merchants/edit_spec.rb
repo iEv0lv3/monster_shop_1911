@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "As a Visitor" do
+RSpec.describe "As a merchant employee" do
   describe "After visiting a merchants show page and clicking on updating that merchant" do
     before :each do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 11234)
+      @merchant_user = create(:merchant_user, merchant_id: @bike_shop.id)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_user)
     end
     it 'I can see prepopulated info on that user in the edit form' do
       visit "/merchants/#{@bike_shop.id}"

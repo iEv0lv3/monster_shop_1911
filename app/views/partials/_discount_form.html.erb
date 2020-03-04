@@ -3,10 +3,10 @@
   <p><%= f.text_field :name, value: @discount.name %></p>
 
   <p><%= f.label :item_count %></p>
-  <p><%= f.text_field :item_count, value: @discount.item_count %></p>
+  <p><%= f.number_field :item_count, value: @discount.item_count %></p>
 
   <p><%= f.label :percent %></p>
-  <p><%= f.text_field :percent, value: @discount.percent %></p>
+  <p><%= f.number_field :percent, value: @discount.percent %></p>
 
   <p><%= submit_tag "#{submit_text}" %></p>
 <% end %>
