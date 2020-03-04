@@ -33,11 +33,11 @@
           <center id='qty'>
             <p><%=quantity%></p>
             <div class="qty-button">
-            <div id="add">
-              <%= button_to "+", "cart/#{item.id}", method: :patch, params: {value: :add}%>
-            </div>
             <div id="sub">
               <%= button_to "-", "cart/#{item.id}", method: :patch, params: {value: :sub}%>
+            </div>
+            <div id="add">
+              <%= button_to "+", "cart/#{item.id}", method: :patch, params: {value: :add}%>
             </div>
             </div>
             <p><%= link_to "Remove", "/cart/#{item.id}",method: :delete %></p>
