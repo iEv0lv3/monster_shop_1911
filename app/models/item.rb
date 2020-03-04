@@ -36,4 +36,11 @@ class Item <ApplicationRecord
     item_orders.sum(:quantity)
   end
 
+  def price_check(discounts)
+    if discounts[self] == 0
+      price
+    else
+      price - (price * discounts[self].percent / 100)
+    end
+  end
 end
